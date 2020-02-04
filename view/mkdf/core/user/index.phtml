@@ -1,0 +1,43 @@
+<h1>Users</h1>
+
+<?= $this->partial('mkdf/core/partial/actions', $actions); ?>
+
+<table class="table table-striped">
+
+   <tr>
+        <th>ID</th>
+        <th>E-mail</th>
+        <th>Full Name</th>
+        <th>Date Created</th>
+        <th>Status</th>
+        <th>Admin</th>
+    </tr>
+    
+    <?php foreach ($users as $user): ?>
+    
+    <tr>
+        <td><?= $this->escapeHtml($user->getId()); ?></td>
+        <td>
+            <a href="<?= $this->url('users', ['action'=>'view', 'id'=>$user->getId()]); ?>">
+                <?= $this->escapeHtml($user->getEmail()); ?>
+            </a> 
+        </td>
+        <td><?= $this->escapeHtml($user->getFullName()); ?></a> 
+        </td>
+        <td><?= $this->escapeHtml($user->getDateCreated()); ?></td>        
+        <td><?= $this->escapeHtml($user->getStatusAsString()); ?></td>
+        <td><?= $user->getIsAdmin() ? "Yes" : "No" ; ?>
+    </tr>
+        
+    <?php endforeach; ?>   
+    
+</table>
+<?=
+$this->paginationControl($users,
+    'Sliding',
+    'application/partial/paginator',
+    ['route' => 'users']);
+?>
+
+
+

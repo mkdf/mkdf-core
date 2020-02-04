@@ -1,0 +1,17 @@
+<?php
+$icons = [
+    'edit'      => '<i class="fas fa-edit"></i>',
+    'delete'    => '<i class="fas fa-trash-alt"></i>',
+    'create'    => '<i class="fas fa-plus"></i>',
+    'subscribe' => '<i class="fas fa-bookmark"></i>',
+    'key'       => '<i class="fas fa-key"></i>',
+];
+?>
+<div class="btn-group <?=$class?>" role="group" aria-label="<?= $label?>">
+<?php foreach($buttons as $button): ?>
+    <a
+        class="btn btn-<?= $button['type'];?>"
+        href="<?= $this->url( $button['target'], $button['params'], [ 'query' => $button['query'] ] ); ?>"
+    ><?= $icons[$button['icon']] ?> <?= $this->escapeHtml($button['label']);?></a>
+<?php endforeach; ?>
+</div>

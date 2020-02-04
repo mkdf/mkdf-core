@@ -1,0 +1,30 @@
+<h1>View User</h1>
+
+<?= $this->partial('mkdf/core/partial/actions', $actions); ?>
+
+        <table class="table table-striped table-bordered">
+             <tr>
+                <th>ID:</th>
+                <td><?= $this->escapeHtml($user->getId()) ?></th>
+            </tr>
+            <tr>
+                <th>E-mail:</th>
+                <td><?= $this->escapeHtml($user->getEmail()) ?></th>
+            </tr>
+            <tr>
+                <th>Full Name:</th>
+                <td><?= $this->escapeHtml($user->getFullName()) ?></td>
+            </tr>
+            <tr>
+                <th>Date Created:</th>
+                <td><?= $this->escapeHtml($user->getDateCreated()) ?></td>
+            </tr>
+            <tr>
+                <th>Status:</th>
+                <td><?= $this->escapeHtml($user->getStatusAsString()) ?></td>
+            </tr>
+            <tr>
+                <th>Admin:</th>
+                <td><?= $user->getIsAdmin() ? "Yes" : "No" ; ?></td>
+            </tr>
+        </table>

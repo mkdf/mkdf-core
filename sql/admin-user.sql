@@ -1,0 +1,1 @@
+-- INSERT INTO user (id, email, full_name, password, status, date_created, pwd_reset_token, pwd_reset_token_creation_date, is_admin) VALUES (1, 'datahub-support@mksmart.org', 'Admin', '$2y$10$x7I97.WhM.X5n/NCqOHibu6AO/iyShMYXEFyBNh2hsfDxsXY9kGa2', 1, '2019-10-04 13:00:41', null, null, 1);
