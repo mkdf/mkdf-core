@@ -45,9 +45,9 @@ class Module
         $application = $event->getApplication();
         /** @var $serviceManager \Zend\ServiceManager\ServiceManager */
         // $serviceManager = $application->getServiceManager();
- //        $pm = $serviceManager->get('ViewHelperManager');
-        // $authManager = $serviceManager->get(AuthManager::class);
- //        $pm->setInvokableClass('userCanSee', 'mkdf-core\View\Helper\UserCanSee');
+        //$pm = $serviceManager->get('ViewHelperManager');
+        //$authManager = $serviceManager->get(AuthManager::class);
+        //$pm->setInvokableClass('userCanSee', 'mkdf-core\View\Helper\UserCanSee');
     }
 
     /**
