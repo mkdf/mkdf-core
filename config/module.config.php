@@ -27,7 +27,6 @@ return [
             Service\UserManager::class => Service\Factory\UserManagerFactory::class,
             Service\AccountFeatureManager::class => Service\Factory\AccountFeatureManagerFactory::class,
             AccountFeature\OverviewFeature::class => InvokableFactory::class,
-            AccountFeature\DatasetsFeature::class => InvokableFactory::class
         ]
     ],
     'view_helpers' => [

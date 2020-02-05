@@ -33,9 +33,8 @@ class Module
     {
         $featureManager = $event->getApplication()->getServiceManager()->get(AccountFeatureManagerInterface::class);
         $featureManager->registerFeature($event->getApplication()->getServiceManager()->get(OverviewFeature::class));
-        $featureManager->registerFeature($event->getApplication()->getServiceManager()->get(DatasetsFeature::class));
 
-        // Get event manager.
+        // Get event manager
         $eventManager = $event->getApplication()->getEventManager();
         $sharedEventManager = $eventManager->getSharedManager();
         // Register the event listener method.
