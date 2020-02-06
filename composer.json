@@ -6,7 +6,7 @@
         "zendframework/zend-mvc": "^3.0.1",
         "zendframework/zend-cache": "^2.7.1",
         "zendframework/zend-db": "^2.8.1",
-        "zendframework/zend-mvc-form": "^1.0",
+        "zendframework/zend-mvc-form": "^1.0"
     },
     "license": "Apache-2.0",
     "authors": [

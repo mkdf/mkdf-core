@@ -15,4 +15,5 @@ interface MKDFCoreRepositoryInterface
     public function findUserByEmail($email);
     public function updateUser(User $user);
     public function addUser(User $user);
+
 }

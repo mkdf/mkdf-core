@@ -39,6 +39,7 @@ class MKDFCoreRepository implements MKDFCoreRepositoryInterface
 
     private function buildQueries(){
         $this->_queries = [
+            'isReady'           => 'SELECT ID FROM user LIMIT 1',
             'allUsers'          => 'SELECT * FROM user WHERE id > 0',
             'oneUser'           => 'SELECT * FROM user WHERE id = ' . $this->fp('id'),
             'oneUserByEmail'    => 'SELECT * FROM user WHERE email = ' . $this->fp('email'),
@@ -200,6 +201,21 @@ class MKDFCoreRepository implements MKDFCoreRepositoryInterface
             return true;
         }
         return false;
+    }
+    
+    public function init(){
+        try {
+            $statement = $this->_adapter->createStatement($this->getQuery('isReady'));
+            $result    = $statement->execute();
+            return false;
+        } catch (\Exception $e) {
+            // XXX Maybe raise a warning here?
+        }
+        $sql = file_get_contents(dirname(__FILE__) . '/../../sql/setup.sql');
+        $this->_adapter->getDriver()->getConnection()->execute($sql);
+        $sql = file_get_contents(dirname(__FILE__) . '/../../sql/admin-user.sql');
+        $this->_adapter->getDriver()->getConnection()->execute($sql);
+        return true;
     }
 /*
  * END OF USER FUNCTIONS
