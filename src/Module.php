@@ -17,6 +17,7 @@ use MKDF\Core\Controller\AuthController;
 use MKDF\Core\Service\AuthManager;
 use MKDF\Core\AccountFeature\OverviewFeature;
 use MKDF\Core\AccountFeature\DatasetsFeature;
+use MKDF\Core\Repository\MKDFCoreRepositoryInterface;
 
 class Module
 {
@@ -25,12 +26,19 @@ class Module
         return include __DIR__ . '/../config/module.config.php';
     }
 
+
+    
     /**
      * This method is called once the MVC bootstrapping is complete and allows
      * to register event listeners.
      */
     public function onBootstrap(MvcEvent $event)
     {
+        // Initialisation
+        $repository = $event->getApplication()->getServiceManager()->get(MKDFCoreRepositoryInterface::class);
+        $repository->init();
+        
+        
         $featureManager = $event->getApplication()->getServiceManager()->get(AccountFeatureManagerInterface::class);
         $featureManager->registerFeature($event->getApplication()->getServiceManager()->get(OverviewFeature::class));
 
