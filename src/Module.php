@@ -8,6 +8,7 @@
 
 namespace MKDF\Core;
 
+use MKDF\Core\Service\AccountFeatureManager;
 use MKDF\Core\Service\AccountFeatureManagerInterface;
 use MKDF\Datasets\DatasetsFeature\PermissionsFeature;
 use MKDF\Keys\Feature\AccountKeysFeature;
@@ -73,6 +74,13 @@ class Module
 
         // Convert dash-style action name to camel-case.
         $actionName = str_replace('-', '', lcfirst(ucwords($actionName, '-')));
+
+        $featureManager = $event->getApplication()->getServiceManager()->get(AccountFeatureManager::class);
+        foreach($featureManager->getFeatures() as $f){
+            if($f->getController() == $controllerName && ($f->getViewAction() == $actionName || $f->getEditAction() == $actionName)){
+                $f->setActive(true);
+            }
+        }
 
         // Get the instance of AuthManager service.
         $authManager = $event->getApplication()->getServiceManager()->get(AuthManager::class);
