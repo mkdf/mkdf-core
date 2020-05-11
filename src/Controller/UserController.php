@@ -58,6 +58,7 @@ class UserController extends AbstractActionController
         return new ViewModel([
             //'users' => $userCollection,
             'users' => $paginator,
+            'url_params' => $this->params()->fromQuery(),
             'actions' => [
                 'label' => 'Actions',
                 'class' => '',

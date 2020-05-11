@@ -32,12 +32,13 @@
     <?php endforeach; ?>   
     
 </table>
-<?=
-$this->paginationControl($users,
-    'Sliding',
-    'application/partial/paginator',
-    ['route' => 'users']);
-?>
+<?= $this->paginationControl($users,
+        'Sliding',
+        'application/partial/paginator',
+        [
+            'route' => 'users',
+            'url_params' => $url_params
+        ]); ?>
 
 
 
