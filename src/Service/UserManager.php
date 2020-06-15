@@ -177,7 +177,7 @@ class UserManager
 
         // Produce HTML of password reset email
         $bodyHtml = $this->viewRenderer->render(
-            'mkdf/email/reset-password-email',
+            'mkdf/core/email/reset-password-email',
             [
                 'passwordResetUrl' => $passwordResetUrl,
             ]);
