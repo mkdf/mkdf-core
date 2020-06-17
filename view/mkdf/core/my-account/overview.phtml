@@ -6,10 +6,12 @@
         </div>
         <div class="col-md-9">
             <table class="table table-bordered">
+                <!--
                 <tr>
                     <th>ID:</th>
                     <td><?= $this->escapeHtml($user->getId()) ?></th>
                 </tr>
+                -->
                 <tr>
                     <th>E-mail:</th>
                     <td><?= $this->escapeHtml($user->getEmail()) ?></th>
@@ -26,10 +28,12 @@
                     <th>Status:</th>
                     <td><?= $this->escapeHtml($user->getStatusAsString()) ?></td>
                 </tr>
+                <?php if ($user->getIsAdmin()): ?>
                 <tr>
                     <th>Admin:</th>
-                    <td><?= $user->getIsAdmin() ? "Yes" : "No" ; ?></td>
+                    <td>Yes</td>
                 </tr>
+                <?php endif; ?>
             </table>
         </div>
     </div>
