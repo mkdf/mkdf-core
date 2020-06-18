@@ -1,7 +1,5 @@
 <?php
 $this->headTitle('Sign in');
-//FIXME - this line is from the example which uses plugins....
-//$this->mainMenu()->setActiveItemId('login');
 $form->get('email')->setAttributes([
     'class'=>'form-control',
     'placeholder'=>'Email address',
@@ -44,5 +42,6 @@ $form->get('password')->setAttributes([
             <?= $this->formElement($form->get('csrf')) ?>
             <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
         </form>
+        <a href="<?= $this->url('reset-password') ?>">Forgot password?</a>
     </div>
 </div>
