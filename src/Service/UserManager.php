@@ -196,10 +196,10 @@ class UserManager
         $mail->setSubject($subject);
 
         // Setup SMTP/Sendmail transport
-        $transport = new SmtpTransport();
-        //$transport = new SendmailTransport();
-        $options   = new SmtpOptions($this->config['smtp']);
-        $transport->setOptions($options);
+        //$transport = new SmtpTransport();
+        //$options   = new SmtpOptions($this->config['smtp']);
+        //$transport->setOptions($options);
+        $transport = new SendmailTransport();
         $transport->send($mail);
     }
 
