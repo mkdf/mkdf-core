@@ -170,7 +170,7 @@ class UserManager
         $this->_repository->setUserPasswordResetToken($user);
 
         // Send an email to user.
-        $subject = 'Password Reset';
+        $subject = 'MK Data Hub password reset';
 
         $httpHost = isset($_SERVER['HTTP_HOST'])?$_SERVER['HTTP_HOST']:'localhost';
         $passwordResetUrl = 'http://' . $httpHost . '/set-password?token=' . $token . "&email=" . $user->getEmail();
@@ -191,7 +191,7 @@ class UserManager
         $mail = new Mail\Message();
         $mail->setEncoding('UTF-8');
         $mail->setBody($body);
-        $mail->setFrom('jase@jasoncarvalho.com', 'ZF Framework');
+        $mail->setFrom('datahub-support@mksmart.org', 'MK Data Hub');
         $mail->addTo($user->getEmail(), $user->getFullName());
         $mail->setSubject($subject);
 
