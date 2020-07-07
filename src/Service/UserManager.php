@@ -173,7 +173,7 @@ class UserManager
         $subject = 'MK Data Hub password reset';
 
         $httpHost = isset($_SERVER['HTTP_HOST'])?$_SERVER['HTTP_HOST']:'localhost';
-        $passwordResetUrl = 'http://' . $httpHost . '/set-password?token=' . $token . "&email=" . $user->getEmail();
+        $passwordResetUrl = 'https://' . $httpHost . '/set-password?token=' . $token . "&email=" . $user->getEmail();
 
         // Produce HTML of password reset email
         $bodyHtml = $this->viewRenderer->render(
