@@ -2,7 +2,6 @@
 
 namespace MKDF\Core\Controller;
 
-use MKDF\Datasets\Repository\MKDFDatasetRepositoryInterface;
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
 use MKDF\Core\Entity\User;
@@ -21,10 +20,9 @@ class MyAccountController extends AbstractActionController
     /**
      * Constructor.
      */
-    public function __construct(MKDFCoreRepositoryInterface $repository, MKDFDatasetRepositoryInterface $datasetRepository)
+    public function __construct(MKDFCoreRepositoryInterface $repository)
     {
         $this->_repository = $repository;
-        $this->_datasetRepository = $datasetRepository;
     }
 
     public function overviewAction () {
@@ -38,35 +36,4 @@ class MyAccountController extends AbstractActionController
 
     }
 
-    public function datasetsAction () {
-        $user = $this->currentUser();
-        //anonymous/logged-out user will return an ID of -1
-        $userId = $user->getId();
-        $actions = [];
-
-        if ($userId > 0) {
-            $actions = [
-                'label' => 'Actions',
-                'class' => '',
-                'buttons' => [[ 'type' => 'primary', 'label' => 'Create a new dataset', 'icon' => 'create', 'target' => 'dataset', 'params' => ['action' => 'add']]]
-            ];
-        }
-
-        $userDatasets = $this->_datasetRepository->findUserDatasets($userId);
-
-        $paginator = new Paginator(new Adapter\ArrayAdapter($userDatasets));
-        $page = $this->params()->fromQuery('page', 1);
-        $paginator->setCurrentPageNumber($page);
-        $paginator->setItemCountPerPage(10);
-
-        return new ViewModel([
-            'message' => 'Datasets ',
-            //'datasets' => $this->datasetCollectionToArray($datasetCollection),
-            'datasets' => $paginator,
-            'user' => $user,
-            'userid' => $userId,
-            'actions' => $actions,
-            'features' => $this->accountFeatureManager()->getFeatures($userId),
-        ]);
-    }
 }
