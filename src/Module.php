@@ -10,14 +10,11 @@ namespace MKDF\Core;
 
 use MKDF\Core\Service\AccountFeatureManager;
 use MKDF\Core\Service\AccountFeatureManagerInterface;
-use MKDF\Datasets\DatasetsFeature\PermissionsFeature;
-use MKDF\Keys\Feature\AccountKeysFeature;
 use Zend\Mvc\MvcEvent;
 use Zend\Mvc\Controller\AbstractActionController;
 use MKDF\Core\Controller\AuthController;
 use MKDF\Core\Service\AuthManager;
 use MKDF\Core\AccountFeature\OverviewFeature;
-use MKDF\Core\AccountFeature\DatasetsFeature;
 use MKDF\Core\Repository\MKDFCoreRepositoryInterface;
 
 class Module
