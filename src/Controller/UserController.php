@@ -283,8 +283,14 @@ class UserController extends AbstractActionController
                     return $this->redirect()->toRoute('users',
                         ['action'=>'message', 'id'=>'sent']);
                 } else {
+                    //We're going to direct all submissions to the same page for security reasons, to avoid
+                    //malicious users fishing for valid email addresses
+                    /*
                     return $this->redirect()->toRoute('users',
                         ['action'=>'message', 'id'=>'invalid-email']);
+                     */
+                    return $this->redirect()->toRoute('users',
+                        ['action'=>'message', 'id'=>'sent']);
                 }
             }
         }
