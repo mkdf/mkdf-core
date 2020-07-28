@@ -2,6 +2,34 @@
 
 <?= $this->partial('mkdf/core/partial/actions', $actions); ?>
 
+<form action="<?= $this->url( 'dataset', ['action'=>'index'],[]); ?>" method="get" id="dataset-search" name="dataset-search">
+    <div class="form-group">
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1"><i class="fas fa-search"></i></span>
+            </div>
+            <?php if($txt_search != ""): ?>
+                <input type="text" name="txt" id="txt" class="form-control" aria-label="Search" aria-describedby="basic-addon1" value="<?= $txt_search ?>">
+            <?php else: ?>
+                <input type="text" name="txt" id="txt" class="form-control" placeholder="Search" aria-label="Search" aria-describedby="basic-addon1">
+            <?php endif; ?>
+        </div>
+    </div>
+    <!--<button type="submit" class="btn btn-primary">Submit</button>-->
+</form>
+
+    <?php
+    if ($txt_search != ""):
+    ?>
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <em><i class="fas fa-search"></i> Searching: <?= $txt_search ?></em><br />
+            </div>
+        </div>
+    <?php
+    endif;
+    ?>
+
 <table class="table table-bordered">
 
    <tr class="table-active">

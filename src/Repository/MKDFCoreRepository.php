@@ -41,6 +41,7 @@ class MKDFCoreRepository implements MKDFCoreRepositoryInterface
         $this->_queries = [
             'isReady'           => 'SELECT ID FROM user LIMIT 1',
             'allUsers'          => 'SELECT * FROM user WHERE id > 0',
+            'allUsersFilter'    => 'SELECT * FROM user WHERE id > 0 AND (email LIKE '.$this->fp("search_email").' OR full_name LIKE '.$this->fp("search_full_name").')',
             'oneUser'           => 'SELECT * FROM user WHERE id = ' . $this->fp('id'),
             'oneUserByEmail'    => 'SELECT * FROM user WHERE email = ' . $this->fp('email'),
             'updateUser'        => 'UPDATE user '
@@ -77,10 +78,23 @@ class MKDFCoreRepository implements MKDFCoreRepositoryInterface
 /*
  * USER FUNCTIONS
  */
-    public function findAllUsers() {
+    public function findAllUsers($txtSearch = "") {
         $userCollection = [];
-        $statement = $this->_adapter->createStatement($this->getQuery('allUsers'));
-        $result    = $statement->execute();
+        
+        if ($txtSearch != ""){
+            $parameters = [
+                'search_email' => '%'.$txtSearch.'%',
+                'search_full_name' => '%'.$txtSearch.'%'
+            ];
+            $query = $this->getQuery('allUsersFilter');
+        }
+        else{
+            $parameters = [];
+            $query = $this->getQuery('allUsers');
+        }
+        
+        $statement = $this->_adapter->createStatement($query);
+        $result    = $statement->execute($parameters);
         if ($result instanceof ResultInterface && $result->isQueryResult()) {
             $resultSet = new ResultSet;
             $resultSet->initialize($result);
