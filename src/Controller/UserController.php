@@ -48,7 +48,16 @@ class UserController extends AbstractActionController
      */
     public function indexAction()
     {
-        $userCollection = $this->_repository->findAllUsers();
+        
+        $txtSearch = $this->params()->fromQuery('txt', "");
+        if ($txtSearch == ""){
+            $userCollection = $this->_repository->findAllUsers();
+        }
+        else{
+            $userCollection = $this->_repository->findAllUsers($txtSearch);
+        }
+        
+        // $userCollection = $this->_repository->findAllUsers();
 
         $paginator = new Paginator(new Adapter\ArrayAdapter($userCollection));
         $page = $this->params()->fromQuery('page', 1);
@@ -63,7 +72,8 @@ class UserController extends AbstractActionController
                 'label' => 'Actions',
                 'class' => '',
                 'buttons' => [[ 'type' => 'primary', 'label' => 'Create a new user', 'icon' => 'create', 'target' => 'users', 'params' => ['action' => 'add']]]
-            ]
+            ],
+            'txt_search' => $txtSearch
         ]);
     }
 
